@@ -47,8 +47,8 @@ function QuizStart (){
             <h1 >Hermoine</h1>
             <p> Test you speed and acuuracy in answering random questions</p>
             <form onSubmit={fetchQuestions}>
-
-                <label>Name</label>
+            <div className={styles.optionsContainer}>
+                          <label>Name</label>
                 <input name='Name' type="text" placeholder="Enter your name"  onChange={handleChange}/><br/>
 
                 <label> Select a duration</label>
@@ -57,8 +57,10 @@ function QuizStart (){
                     <option value="60">1 minute</option>
                     <option value="120">2 minutes</option>
                 </select> <br/>
-               <input type="submit" value="Start Quiz" className={styles.btn_1}/>
-               <button className={styles.btn_1}>{isLoading? 'Hello': 'not loading'}</button>
+            </div>
+      
+               <input  type="submit" value="Start Quiz" className={styles.btn_1}/>
+               {/* <button className={styles.btn_1}>{isLoading? 'Hello': 'not loading'}</button> */}
             </form>
         </div>
 
