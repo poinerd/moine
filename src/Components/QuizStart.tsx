@@ -1,5 +1,5 @@
 import styles from './AllStyles.module.css'
-import {Link, useNavigate} from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { useState } from 'react'
 
 
@@ -14,7 +14,7 @@ function QuizStart (){
     })
 
     const navigate = useNavigate()
-    const [isLoading, setLoading] = useState('false')
+
 
 
     function handleChange(e:any){
@@ -60,7 +60,7 @@ function QuizStart (){
             </div>
       
                <input  type="submit" value="Start Quiz" className={styles.btn_1}/>
-               {/* <button className={styles.btn_1}>{isLoading? 'Hello': 'not loading'}</button> */}
+               
             </form>
         </div>
 
