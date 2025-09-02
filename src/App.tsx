@@ -1,5 +1,4 @@
 import { useState } from "react"
-import styles from './Components/AllStyles.module.css'
 import QuizStart from "./Components/QuizStart"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import QuizPage from "./Components/QuizPage"
