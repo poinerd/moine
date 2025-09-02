@@ -55,12 +55,12 @@ function QuizStart ({setPlayerName, setPlayerDuration}: quizStartProps){
     }
     return(
         <div className={styles.container}>
-            <div className={styles.quizStartContainer}>
+            <div className={styles.quizStartContainer2}>
             <h1 >Hermoine</h1>
 
             <p> Test you speed and accuracy by answering random questions</p>
 
-            <form onSubmit={fetchQuestions}>
+            <form onSubmit={fetchQuestions} className={styles.quizStartContainer1}>
             <div className={styles.optionsContainer}>
                           <label>Name</label>
                 <input name='Name' type="text" placeholder="Enter your name"  onChange={handleChange} required/><br/>

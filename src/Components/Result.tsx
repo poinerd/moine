@@ -10,12 +10,15 @@ function Result(){
 
     }
     return(
-        <div className={styles.quizStartContainer}>
+        <div className={styles.container}>
+            <div className={styles.quizStartContainer}>
              <p> Time's up!</p>
              <p> Your accuracy was </p>
              <p> Your speed was </p>
              <button className={styles.btn_1} onClick={handleClick}>Play again</button>
+            </div>
         </div>
+        
     )
 
 }

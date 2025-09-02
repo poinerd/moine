@@ -67,11 +67,14 @@ function QuizPage({questions, time}:QuestionPageProps){
     //   <input className={styles.btn_1} type="submit" value="Next" />
     // </div>
 
-
+     <div className={styles.container}>
+      
         <div className={styles.quizStartContainer}>
-        <p>{duration }</p>
+          <div className={styles.timeCard}>   
+
+ <p>{duration}</p></div>
         <div key={questions[questionNumber].id} className={styles.questionBlock}>
-          <p>{questions[questionNumber].id}. {questions[questionNumber].question}</p>
+          <p className={styles.questionCard}>{questions[questionNumber].id}. {questions[questionNumber].question}</p>
           {/* <form>
             {q.options.map((option, i) => (
               <label key={i}>
@@ -84,6 +87,7 @@ function QuizPage({questions, time}:QuestionPageProps){
   
       <input className={styles.btn_1} type="submit" value="Next" onClick={handleChange}/>
     </div>
+     </div>
 
     )
 }
