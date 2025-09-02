@@ -2,10 +2,16 @@ import styles from './AllStyles.module.css'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function GetReady(){
+
+type player = {
+      playerName : string
+    }
+
+function GetReady({playerName}:player){
 
     const[time, setTime]= useState(3)
     const navigate = useNavigate()
+
 
     useEffect(() => {
   const timeInterval = setInterval(() => {
@@ -26,11 +32,13 @@ function GetReady(){
 
 
     return(
+      <div className={styles.container}>
         <div className={styles.quizStartContainer}>
-            <h1>All your questions are ready</h1>
+            <p>{playerName} your questions are ready</p>
             <p> Quiz starts in {time}</p>
-             
         </div>
+      </div>
+        
     )
 
 }

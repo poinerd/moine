@@ -1,33 +1,41 @@
 import styles from './AllStyles.module.css'
 import { useNavigate} from 'react-router-dom'
-import { useState } from 'react'
+import { useState,  } from 'react'
 
 
+type quizStartProps={
+    setPlayerName : React.Dispatch<React.SetStateAction<string>>
+    setPlayerDuration : React.Dispatch<React.SetStateAction<number>>
+}
 
 
-
-function QuizStart (){
-
+function QuizStart ({setPlayerName, setPlayerDuration}: quizStartProps){
+    
     const [inputValue, setInputValue]= useState({
         Name:'',
-        Duration: 0
+        Duration: 20
     })
 
     const navigate = useNavigate()
-
-
-
+    
     function handleChange(e:any){
+   
+
         const {name, value} = e.target  
         setInputValue((prev)=>({
             ...prev, [name]: name === "Duration" ? Number(value) : value
 
-        }))
+        })
+        ) 
+
 
     }
 
     async function fetchQuestions(e:any){
     e.preventDefault()
+    setPlayerName(inputValue.Name)
+    setPlayerDuration(inputValue.Duration)
+
     try{
         let data = await fetch(`https://opentdb.com/api.php?amount=10`)
         let parsedData = await data.json()
@@ -38,31 +46,40 @@ function QuizStart (){
         
     }
     catch{
+        console.log('You need internet connection')
+        console.log('Hello', inputValue.Name )
+        console.log('You have '+ inputValue.Duration + 'seconds' )
+        navigate('/getReady')
+        // navigate('/generateFailed')
 
     }
 
-}
+    }
     return(
-        <div className={styles.quizStartContainer}>
+        <div className={styles.container}>
+            <div className={styles.quizStartContainer}>
             <h1 >Hermoine</h1>
-            <p> Test you speed and acuuracy in answering random questions</p>
+            <p> Test you speed and accuracy by answering random questions</p>
+
             <form onSubmit={fetchQuestions}>
             <div className={styles.optionsContainer}>
                           <label>Name</label>
-                <input name='Name' type="text" placeholder="Enter your name"  onChange={handleChange}/><br/>
+                <input name='Name' type="text" placeholder="Enter your name"  onChange={handleChange} required/><br/>
 
                 <label> Select a duration</label>
-                <select name="Duration" onChange={handleChange}>
-                    <option value="30">30 seconds</option>
-                    <option value="60">1 minute</option>
-                    <option value="120">2 minutes</option>
+                <select name="Duration" onChange={handleChange} required>
+                    <option value="20">20s</option>
+                    <option value="15">15s</option>
+                    <option value="10">10s</option>
                 </select> <br/>
             </div>
       
                <input  type="submit" value="Start Quiz" className={styles.btn_1}/>
                
             </form>
+            </div>
         </div>
+       
 
     )
 }
