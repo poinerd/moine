@@ -15,7 +15,7 @@ function QuizStart ({setPlayerName, setPlayerDuration}: quizStartProps){
         Name:'',
         Duration: 20
     })
-
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
     
     function handleChange(e:any){
@@ -33,10 +33,12 @@ function QuizStart ({setPlayerName, setPlayerDuration}: quizStartProps){
 
     async function fetchQuestions(e:any){
     e.preventDefault()
+    setLoading(true);
     setPlayerName(inputValue.Name)
     setPlayerDuration(inputValue.Duration)
 
     try{
+ 
         let data = await fetch(`https://opentdb.com/api.php?amount=10`)
         let parsedData = await data.json()
         console.log(parsedData)
@@ -46,11 +48,7 @@ function QuizStart ({setPlayerName, setPlayerDuration}: quizStartProps){
         
     }
     catch{
-        console.log('You need internet connection')
-        console.log('Hello', inputValue.Name )
-        console.log('You have '+ inputValue.Duration + 'seconds' )
-        navigate('/getReady')
-        // navigate('/generateFailed')
+        navigate('/generateFailed')
 
     }
 
@@ -59,6 +57,7 @@ function QuizStart ({setPlayerName, setPlayerDuration}: quizStartProps){
         <div className={styles.container}>
             <div className={styles.quizStartContainer}>
             <h1 >Hermoine</h1>
+
             <p> Test you speed and accuracy by answering random questions</p>
 
             <form onSubmit={fetchQuestions}>
@@ -74,7 +73,12 @@ function QuizStart ({setPlayerName, setPlayerDuration}: quizStartProps){
                 </select> <br/>
             </div>
       
-               <input  type="submit" value="Start Quiz" className={styles.btn_1}/>
+       
+               <button type='submit' disabled={loading}  className={styles.btn_1}> {loading ? (
+        <span className={styles.spinner}></span>
+      ) : (
+        "Submit"
+      )} </button>
                
             </form>
             </div>

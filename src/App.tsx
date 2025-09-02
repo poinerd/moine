@@ -1,11 +1,13 @@
 import { useState } from "react"
-
+import styles from './Components/AllStyles.module.css'
 import QuizStart from "./Components/QuizStart"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import QuizPage from "./Components/QuizPage"
 import GetReady from "./Components/GetReady"
 import GenerateFailed from "./Components/GenerateFailed"
 import Result from "./Components/Result"
+
+
 
 
 
