@@ -14,6 +14,8 @@ function App(){
 
   const [playerName, setPlayerName] = useState('')
   const [playerDuration, setPlayerDuration] = useState(0)
+  const [quizQuestions, getQuizQuestions] = useState([])
+
   // const [quizQuestions, getQuizQuestions] = useState([])
 
    let dummy =[
@@ -38,8 +40,8 @@ function App(){
 
 
       <Routes>
-      <Route path='/' element={<QuizStart setPlayerName={setPlayerName} setPlayerDuration={setPlayerDuration}/>}></Route>
-      <Route path='/quiz' element={<QuizPage questions={dummy} time={playerDuration}/>}></Route>
+      <Route path='/' element={<QuizStart setPlayerName={setPlayerName} setPlayerDuration={setPlayerDuration} getQuizQuestions={getQuizQuestions} />}></Route>
+      <Route path='/quiz' element={<QuizPage questions={quizQuestions} time={playerDuration}/>}></Route>
       <Route path='/getReady' element={<GetReady playerName={playerName}  />}></Route>
       <Route path='/generateFailed' element={<GenerateFailed />}></Route>
       <Route path='/result' element={<Result />}></Route>

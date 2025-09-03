@@ -6,8 +6,9 @@ import { useNavigate } from 'react-router-dom';
 
 type Question = {
     question: string;
-    options: string[];
-    id: number;
+    answers: string[];
+    type: any[];
+    correct_answer: string
 }
 type QuestionPageProps = {
     questions: Question[];
@@ -70,22 +71,26 @@ function QuizPage({questions, time}:QuestionPageProps){
      <div className={styles.container}>
       
         <div className={styles.quizStartContainer}>
-          <div className={styles.timeCard}>   
-
- <p>{duration}</p></div>
-        <div key={questions[questionNumber].id} className={styles.questionBlock}>
-          <p className={styles.questionCard}>{questions[questionNumber].id}. {questions[questionNumber].question}</p>
-          {/* <form>
-            {q.options.map((option, i) => (
-              <label key={i}>
-                <input type="radio" name={`option-${q.id}`} value={option} />
+          <div className={styles.timeCard}><p>{duration}</p></div>
+        <div className={styles.questionBlock}>
+          <p className={styles.questionCard}> {questions[questionNumber].question}</p>
+           <form className={styles.quizOptionsContainer}>
+            {questions[questionNumber].answers.map((option, i) => (
+              
+              <label key={i}style={{display:'flex', alignItems:'center', justifyContent:'flex-start', flexDirection:'row', width:'100%'}}>
+                <input style={{ marginRight:'1rem', color:'red'}}
+                type="radio"
+                value={option}
+                name={`question-${questionNumber}`}   // unique for each question
+                 onChange={handleChange}/>
                 {option}
               </label>
+
+              
             ))}
-          </form> */}
+          </form> 
         </div>
   
-      <input className={styles.btn_1} type="submit" value="Next" onClick={handleChange}/>
     </div>
      </div>
 

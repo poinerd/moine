@@ -35,7 +35,7 @@ function GetReady({playerName}:player){
       <div className={styles.container}>
         <div className={styles.quizStartContainer}>
             <p style={{fontSize:'1.5rem',}}>{playerName} , your questions are ready!</p>
-            <p style={{backgroundColor:'#ccfae3ff', padding:'0.5rem', borderRadius:'0.5rem', fontWeight:'medium'}}> Quiz starts in {time}</p>
+            <p style={{backgroundColor:'#ccfae3ff', padding:'0.9rem', borderRadius:'0.5rem', fontWeight:'medium'}}> Quiz starts in {time}</p>
         </div>
       </div>
         

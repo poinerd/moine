@@ -6,14 +6,17 @@ import Logo from '../assets/moine1.svg'
 type quizStartProps={
     setPlayerName : React.Dispatch<React.SetStateAction<string>>
     setPlayerDuration : React.Dispatch<React.SetStateAction<number>>
+    getQuizQuestions : React.Dispatch<React.SetStateAction<any>>
 }
 
 
-function QuizStart ({setPlayerName, setPlayerDuration}: quizStartProps){
+
+
+function QuizStart ({setPlayerName, setPlayerDuration, getQuizQuestions}: quizStartProps){
     
     const [inputValue, setInputValue]= useState({
         Name:'',
-        Duration: 20
+        Duration: 1000
     })
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
@@ -41,7 +44,10 @@ function QuizStart ({setPlayerName, setPlayerDuration}: quizStartProps){
  
         let data = await fetch(`https://opentdb.com/api.php?amount=10`)
         let parsedData = await data.json()
-        console.log(parsedData)
+        let quizQuestions = parsedData.results
+        let cleanedQuestions = manipulateQuestions(quizQuestions)
+        console.log(cleanedQuestions)
+        getQuizQuestions(cleanedQuestions)
         console.log('Hello', inputValue.Name )
         console.log('You have '+ inputValue.Duration + 'seconds' )
         navigate('/getReady')
@@ -53,10 +59,34 @@ function QuizStart ({setPlayerName, setPlayerDuration}: quizStartProps){
     }
 
     }
+
+
+    function manipulateQuestions (arr:any){
+        return arr.map((ar : any)=>{
+
+            delete ar['category']
+            delete ar['difficulty']
+            let allAnswers = ar['incorrect_answers']
+            const randomNumber = Math.floor(Math.random() * (allAnswers.length + 1));
+            allAnswers.splice(randomNumber,0,ar['correct_answer'])
+
+            return{
+                    question: ar['question'],
+                    answers : allAnswers,
+                    type: ar['type'],
+                    correct_answer : ar['correct_answer']
+                
+            }
+
+        })
+
+        
+
+    }
     return(
         <div className={styles.container}>
             <div className={styles.quizStartContainer2}>
-            <img src={Logo} style={{width:'20rem', height:''}} alt='logo'/>
+            <img src={Logo} style={{width:'17rem', height:''}} alt='logo'/>
             <p> Test you speed and accuracy by answering random questions</p>
       
 
@@ -67,7 +97,7 @@ function QuizStart ({setPlayerName, setPlayerDuration}: quizStartProps){
 
                 <label> Select a duration</label>
                 <select name="Duration" onChange={handleChange} required>
-                    <option value="20">20s</option>
+                    <option value="1000">1000s</option>
                     <option value="15">15s</option>
                     <option value="10">10s</option>
                 </select> <br/>
