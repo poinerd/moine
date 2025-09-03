@@ -18,19 +18,19 @@ function App(){
 
   // const [quizQuestions, getQuizQuestions] = useState([])
 
-   let dummy =[
-    {
-    question: 'who invented coal',
-    options: ['foss', 'fs', 'rafel'],
-    id: 1
-    },
+  //  let dummy =[
+  //   {
+  //   question: 'who invented coal',
+  //   options: ['foss', 'fs', 'rafel'],
+  //   id: 1
+  //   },
 
-     {
-    question: 'who invented coal stark',
-    options: ['foss', 'fs', 'rafel'],
-    id: 2
-    }
-   ]
+  //    {
+  //   question: 'who invented coal stark',
+  //   options: ['foss', 'fs', 'rafel'],
+  //   id: 2
+  //   }
+  //  ]
 
   return(
  
