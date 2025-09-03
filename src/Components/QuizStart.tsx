@@ -1,7 +1,7 @@
 import styles from './AllStyles.module.css'
 import { useNavigate} from 'react-router-dom'
 import { useState,  } from 'react'
-
+import Logo from '../assets/moine1.svg'
 
 type quizStartProps={
     setPlayerName : React.Dispatch<React.SetStateAction<string>>
@@ -56,9 +56,9 @@ function QuizStart ({setPlayerName, setPlayerDuration}: quizStartProps){
     return(
         <div className={styles.container}>
             <div className={styles.quizStartContainer2}>
-            <h1 >Hermoine</h1>
-
+            <img src={Logo} style={{width:'20rem', height:''}} alt='logo'/>
             <p> Test you speed and accuracy by answering random questions</p>
+      
 
             <form onSubmit={fetchQuestions} className={styles.quizStartContainer1}>
             <div className={styles.optionsContainer}>
